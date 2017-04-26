@@ -19,6 +19,32 @@
             height: 60px;
             font-size: large;
         }
+        #btn {
+            -moz-box-shadow: 0px 1px 0px 0px #fff6af;
+            -webkit-box-shadow: 0px 1px 0px 0px #fff6af;
+            box-shadow: 0px 1px 0px 0px #fff6af;
+            background-color:#ffec64;
+            -moz-border-radius:6px;
+            -webkit-border-radius:6px;
+            border-radius:6px;
+            border:1px solid #ffaa22;
+            display:inline-block;
+            cursor:pointer;
+            color:#333333;
+            font-family:Arial;
+            font-size:15px;
+            font-weight:bold;
+            padding:6px 24px;
+            text-decoration:none;
+            text-shadow:0px 1px 0px #ffee66;
+        }
+        #btn:hover {
+            background-color:#ffab23;
+        }
+        #btn:active {
+            position:relative;
+            top:1px;
+        }
     </style>
 </head>
 <body>
@@ -44,7 +70,8 @@ Last step was made by:
         <td id="22"></td>
     </tr>
 </table>
-<button onclick="replay()">qwert</button>
+<br>
+<button id="btn" onclick="replay()" style="display: none">try again</button>
 <script>
 
     var gameBoard = $("gameBoard");
@@ -63,10 +90,6 @@ Last step was made by:
         this.i = i;
         this.j = j;
     }
-
-    //    Item.prototype.toString = function () {
-    //        return this.i + "" + this.j;
-    //    };
 
     var url = window.location.toString();
     var params = url.split('=');
@@ -123,6 +146,7 @@ Last step was made by:
             drawVictoryItemsOnUI(game.victoryItems);
             clearTimeout(timer);
             gameBoard.onmouseup = null;
+            $("btn").style.display = "inline";
         } else {
             if ($("who").innerHTML !== "${player}") {
                 gameBoard.onmouseup = listenMouseUp;
@@ -173,9 +197,9 @@ Last step was made by:
         return a;
     }
 
-
     function replay() {
         clearUI();
+        $("btn").style.display = "none";
         game = new Game(gameName, initArray());
         toServer(game, "${player}");
         timer = setTimeout(fromServer, 1000);
