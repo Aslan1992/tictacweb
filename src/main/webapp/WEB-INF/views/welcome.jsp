@@ -20,7 +20,7 @@
 <h4>Waiting games: </h4>
 <c:forEach items="${createdGames}" var="game">
     <ul>
-        <li><a href="/connectToGame?name=${game.name}">${game.name}</a></li>
+        <li><a href="/connectToGame?name=${game.name}">game: ${game.name}, status: ${game.status}</a></li>
     </ul>
 </c:forEach>
 </body>
