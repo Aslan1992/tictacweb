@@ -130,8 +130,12 @@ Last step was made by:
         game = JSON.parse(http.responseText);
         whoMadeStep();
         drawOnUi(game.state);
-        if (game.victoryItems !== null) {
-            drawVictoryItemsOnUI(game.victoryItems);
+        if (game.victoryItems !== null || allItemsIsFilled(game.state)) {
+
+            if (game.victoryItems !== null) {
+                drawVictoryItemsOnUI(game.victoryItems);
+            }
+
             clearTimeout(timer);
             gameBoard.onmouseup = null;
             $("btn").style.display = "inline";
@@ -169,6 +173,18 @@ Last step was made by:
             }
         }
         return a;
+    }
+
+    function allItemsIsFilled(array) {
+        var k = 0;
+        for(var i = 0; i < BOARD_SIZE; i++) {
+            for(var j = 0; j < BOARD_SIZE; j++) {
+                if (array[i][j] !== "") {
+                    k++;
+                }
+            }
+        }
+        return (k === 9);
     }
 
     function replay() {

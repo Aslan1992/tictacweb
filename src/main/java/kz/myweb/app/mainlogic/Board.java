@@ -3,7 +3,7 @@ package kz.myweb.app.mainlogic;
 import kz.myweb.app.domain.Item;
 
 public class Board {
-    private static final int BOARD_SIZE = 3;
+    public static final int BOARD_SIZE = 3;
     private static final int CENTER = 1;
     private String[][] state;
     public static final String EMPTY_ITEM = "";

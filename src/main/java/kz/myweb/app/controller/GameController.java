@@ -1,6 +1,7 @@
 package kz.myweb.app.controller;
 
 import kz.myweb.app.domain.Game;
+import kz.myweb.app.mainlogic.Board;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -91,9 +92,9 @@ public class GameController {
     }
 
     private String[][] getEmptyArray() {
-        String [][] a = new String[3][3];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        String [][] a = new String[Board.BOARD_SIZE][Board.BOARD_SIZE];
+        for (int i = 0; i < Board.BOARD_SIZE; i++) {
+            for (int j = 0; j < Board.BOARD_SIZE; j++) {
                 a[i][j] = "";
             }
         }
