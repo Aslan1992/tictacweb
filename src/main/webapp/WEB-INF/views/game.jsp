@@ -73,8 +73,13 @@ Last step was made by:
 <br>
 <button id="btn" onclick="replay()" style="display: none">try again</button>
 <script>
-
     var gameBoard = $("gameBoard");
+    var url = window.location.toString();
+    var params = url.split('=');
+    var gameName = (params[1] != null) ? params[1] : "${gameName}";
+    const BOARD_SIZE = 3;
+    var game = new Game(gameName, initArray());
+    gameBoard.onmouseup = listenMouseUp;
 
     function $(elementId) {
         return document.getElementById(elementId);
@@ -90,15 +95,6 @@ Last step was made by:
         this.i = i;
         this.j = j;
     }
-
-    var url = window.location.toString();
-    var params = url.split('=');
-    var gameName = (params[1] != null) ? params[1] : "${gameName}";
-    const BOARD_SIZE = 3;
-
-    var game = new Game(gameName, initArray());
-
-    gameBoard.onmouseup = listenMouseUp;
 
     function listenMouseUp(e) {
         e = e || window.event;
@@ -116,14 +112,6 @@ Last step was made by:
         http.open('GET', '/whoMadeStep?name=' + gameName, false);
         http.send();
         $("who").innerHTML = http.responseText;
-    }
-
-    function line(str) {
-        return parseInt(str.charAt(0));
-    }
-
-    function column(str) {
-        return parseInt(str.charAt(1));
     }
 
     function toServer(myObject, playerRole) {
@@ -152,20 +140,6 @@ Last step was made by:
                 gameBoard.onmouseup = listenMouseUp;
             }
             timer = setTimeout(fromServer, 1000);
-        }
-    }
-
-    function drawVictoryItemsOnUI(items) {
-        for (var i = 0; i < BOARD_SIZE; i++) {
-            $(items[i].i + "" + items[i].j).style.backgroundColor = "lightgreen";
-        }
-    }
-
-    function drawOnUi(stateArr) {
-        for (var i = 0; i < BOARD_SIZE; i++) {
-            for (var j = 0; j < BOARD_SIZE; j++) {
-                $(i + "" + j).innerHTML = stateArr[i][j];
-            }
         }
     }
 
@@ -206,6 +180,20 @@ Last step was made by:
         gameBoard.onmouseup = listenMouseUp;
     }
 
+    function drawVictoryItemsOnUI(items) {
+        for (var i = 0; i < BOARD_SIZE; i++) {
+            $(items[i].i + "" + items[i].j).style.backgroundColor = "lightgreen";
+        }
+    }
+
+    function drawOnUi(stateArr) {
+        for (var i = 0; i < BOARD_SIZE; i++) {
+            for (var j = 0; j < BOARD_SIZE; j++) {
+                $(i + "" + j).innerHTML = stateArr[i][j];
+            }
+        }
+    }
+
     function clearUI() {
         for (var i = 0; i < BOARD_SIZE; i++) {
             for (var j = 0; j < BOARD_SIZE; j++) {
@@ -213,6 +201,14 @@ Last step was made by:
                 $(i + "" + j).style.backgroundColor = "white";
             }
         }
+    }
+
+    function line(str) {
+        return parseInt(str.charAt(0));
+    }
+
+    function column(str) {
+        return parseInt(str.charAt(1));
     }
 </script>
 </body>

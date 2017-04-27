@@ -35,9 +35,6 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "i=" + i +
-                ", j=" + j +
-                '}';
+        return "(" + this.i + "," + this.j + ")";
     }
 }

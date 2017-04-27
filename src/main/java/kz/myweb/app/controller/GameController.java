@@ -67,7 +67,6 @@ public class GameController {
     public String toServer(@RequestBody Game gameObjectFromPage, @RequestParam String playerRole) {
         for (Game game : createdGames) {
             if (gameObjectFromPage.getName().equalsIgnoreCase(game.getName())) {
-
                 game.setState(gameObjectFromPage.getState());
                 game.checkForGameover();
                 roles.put(game.getName(), playerRole);
