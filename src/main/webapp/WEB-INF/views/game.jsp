@@ -19,6 +19,10 @@
             height: 60px;
             font-size: large;
         }
+        td:hover {
+            background: #f3bd48; /* Цвет фона при наведении */
+            color: #fff; /* Цвет текста при наведении */
+        }
         #btn {
             -moz-box-shadow: 0px 1px 0px 0px #fff6af;
             -webkit-box-shadow: 0px 1px 0px 0px #fff6af;
@@ -48,7 +52,7 @@
     </style>
 </head>
 <body>
-<h4><div id="gameInfo"></div></h4>
+<h4 style="color:green"><div id="gameInfo"></div></h4>
 <h4>Creator - 'X', Incomer - 'O'</h4>
 <h4>Player: ${player}</h4>
 Last step was made by:
